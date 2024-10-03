@@ -1,0 +1,11 @@
+apiVersion: services.cloud.sap.com/v1alpha1
+kind: ServiceInstance
+metadata:
+  name: created-with-sap-btp-service-operators
+spec:
+  serviceOfferingName: cloud-logging
+  servicePlanName: standard
+  externalName: cloud-logging-created-with-sap-btp-service-operators
+  parameters:
+    ingest_otlp:
+      enabled: true

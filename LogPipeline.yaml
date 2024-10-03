@@ -1,0 +1,33 @@
+ apiVersion: telemetry.kyma-project.io/v1alpha1
+ kind: LogPipeline
+ metadata:
+   name: sap-cloud-logging-application-logs
+ spec:
+   input:
+     application:
+       containers:
+         exclude:
+           - istio-proxy
+   output:
+     http:
+       dedot: true
+       host:
+         valueFrom:
+           secretKeyRef:
+             name: sap-cloud-logging
+             namespace: sap-cloud-logging-integration
+             key: ingest-mtls-endpoint
+       tls:
+         cert:
+           valueFrom:
+             secretKeyRef:
+               name: sap-cloud-logging
+               namespace: sap-cloud-logging-integration
+               key: ingest-mtls-cert
+         key:
+           valueFrom:
+             secretKeyRef:
+               name: sap-cloud-logging
+               namespace: sap-cloud-logging-integration
+               key: ingest-mtls-key
+       uri: /customindex/kyma

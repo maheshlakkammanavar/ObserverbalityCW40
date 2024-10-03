@@ -1,0 +1,33 @@
+ apiVersion: telemetry.kyma-project.io/v1alpha1
+ kind: MetricPipeline
+ metadata:
+   name: sap-cloud-logging
+ spec:
+   input:
+     prometheus:
+       enabled: false
+     istio:
+       enabled: false
+     runtime:
+       enabled: false
+   output:
+     otlp:
+       endpoint:
+         valueFrom:
+           secretKeyRef:
+             name: sap-cloud-logging
+             namespace: sap-cloud-logging-integration
+             key: ingest-otlp-endpoint
+       tls:
+         cert:
+           valueFrom:
+             secretKeyRef:
+               name: sap-cloud-logging
+               namespace: sap-cloud-logging-integration
+               key: ingest-otlp-cert
+         key:
+           valueFrom:
+             secretKeyRef:
+               name: sap-cloud-logging
+               namespace: sap-cloud-logging-integration
+               key: ingest-otlp-key

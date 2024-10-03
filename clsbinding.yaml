@@ -1,0 +1,11 @@
+apiVersion: services.cloud.sap.com/v1
+kind: ServiceBinding
+metadata:
+  name: cls-binding
+spec:
+  serviceInstanceName: created-with-sap-btp-service-operators
+  externalName: cloud-logging-created-with-sap-btp-service-operators
+  secretName: sap-cloud-logging
+  credentialsRotationPolicy:
+    enabled: true
+    rotationFrequency: 168h
